@@ -23,6 +23,7 @@ ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', '127.0.0.1').split(';')
 # Application definition
 
 INSTALLED_APPS = [
+    'hat.apps.HatConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
