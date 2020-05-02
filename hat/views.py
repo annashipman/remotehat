@@ -1,8 +1,9 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse("Hello, world. Hat")
+    return render(request, 'hat/index.html')
 
 def submit_name(request):
     famous_name = "Anna Shipman"
