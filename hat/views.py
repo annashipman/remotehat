@@ -17,7 +17,7 @@ def submit_name(request):
     except:
         # Not sure what error might be raised here
         # Worth noting that it allows empty strings to be submitted
-        return render(request, 'hat/add_name.html', {
+        return render(request, 'hat/add_names.html', {
             'error_message': "An error occurred",
         })
     return render(request, 'hat/submit_name.html', {'famous_name': famous_name})
