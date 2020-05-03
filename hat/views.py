@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+import random
 
 from .models import FamousNames
 
@@ -23,5 +24,8 @@ def submit_name(request):
     return render(request, 'hat/submit_name.html', {'famous_name': famous_name})
 
 def retrieve_random_name(request):
-    response = "random name chosen by dice roll"
+    round = 1
+    names_in_round = list(FamousNames.objects.filter(round_number=round))
+    famous_name = random.choice(names_in_round).name_text
+    response = famous_name
     return HttpResponse(response)
