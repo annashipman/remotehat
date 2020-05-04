@@ -1,5 +1,4 @@
-<h1>You've submitted {{ famous_name }}</h1>
-
+<h1>Add Name</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'hat:submit_name' %}" method="post">

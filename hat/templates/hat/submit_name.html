@@ -1,1 +1,7 @@
-Hello! Name submitted {{famous_name}}
+<h1>You've submitted: {{ famous_name }}</h1>
+
+<form action="{% url 'hat:add_names' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Add another">
+</form>
+<a href="{% url 'hat:retrieve_random_name' %}">Finished, I want to play now</a>
