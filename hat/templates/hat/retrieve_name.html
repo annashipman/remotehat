@@ -1,1 +1,8 @@
-{{ famous_name.name_text }}
+<h1>{{ famous_name.name_text }}</h1>
+
+<form action="{% url 'hat:retrieve_random_name' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Got it! Next!">
+</form>
+
+<a href="{% url 'hat:play' %}">End turn</a>
