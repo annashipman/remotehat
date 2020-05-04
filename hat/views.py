@@ -13,8 +13,9 @@ def add_names(request):
 def submit_name(request):
     try:
         famous_name = request.POST['famous_name']
-        f = FamousNames(name_text=famous_name)
-        f.save()
+        if famous_name:
+            f = FamousNames(name_text=famous_name)
+            f.save()
     except:
         # Not sure what error might be raised here
         # Worth noting that it allows empty strings to be submitted
