@@ -1,7 +1,8 @@
-<h1>{{ famous_name.name_text }}</h1>
+<h1>{{ famous_name }}</h1>
 
 <form action="{% url 'hat:retrieve_random_name' %}" method="post">
 {% csrf_token %}
+<input type="hidden" id="famous_name" name="famous_name" value="{{ famous_name }}">
 <input type="submit" value="Got it! Next!">
 </form>
 
