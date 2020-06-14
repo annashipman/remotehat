@@ -30,9 +30,10 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 
     mysql -uroot -pMySuperPassword -e "CREATE USER 'dev_user'@'localhost' IDENTIFIED BY 'password';"
     mysql -uroot -pMySuperPassword -e "GRANT ALL PRIVILEGES ON * . * TO 'dev_user'@'localhost';"
+
+    cd /vagrant/remotehat/
+    python3 manage.py migrate
   SHELL
-
-
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
