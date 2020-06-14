@@ -19,7 +19,20 @@ Vagrant.configure("2") do |config|
     sudo apt-get -y install python3-pip
     python3 -m pip install Django
     python3 -m pip install virtualenv
+
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password password MySuperPassword'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MySuperPassword'
+    sudo apt-get -y install mysql-server
+    sudo apt-get -y install default-libmysqlclient-dev
+    python3 -m pip install mysqlclient
+
+    mysql -uroot -pMySuperPassword -e "CREATE DATABASE hat CHARACTER SET utf8;"
+
+    mysql -uroot -pMySuperPassword -e "CREATE USER 'dev_user'@'localhost' IDENTIFIED BY 'password';"
+    mysql -uroot -pMySuperPassword -e "GRANT ALL PRIVILEGES ON * . * TO 'dev_user'@'localhost';"
   SHELL
+
+
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
