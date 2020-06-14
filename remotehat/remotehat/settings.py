@@ -18,7 +18,7 @@ if DEBUG:
 else:
     SECRET_KEY = env.get('DJANGO_SECRET_KEY')
 
-ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', '127.0.0.1').split(';')
+ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', 'localhost').split(';')
 
 # Application definition
 
