@@ -16,15 +16,14 @@ Vagrant.configure("2") do |config|
     sudo a2ensite localhost.conf
     sudo systemctl reload apache2
 
-    sudo apt-get -y install python3-pip
-    python3 -m pip install Django
-    python3 -m pip install virtualenv
-
     debconf-set-selections <<< 'mysql-server mysql-server/root_password password MySuperPassword'
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MySuperPassword'
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MySuperPassword'
+
+    sudo apt-get -y install python3-pip
+
     sudo apt-get -y install mysql-server
-    sudo apt-get -y install default-libmysqlclient-dev
-    python3 -m pip install mysqlclient
+
+    python3 -m pip install -r /vagrant/requirements.txt
 
     mysql -uroot -pMySuperPassword -e "CREATE DATABASE hat CHARACTER SET utf8;"
 
