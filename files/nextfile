@@ -1,3 +1,0 @@
-
-    WSGIDaemonProcess remotehat python-path=/home/vagramt/remotehat/remotehat processes=2 threads=15
-    WSGIProcessGroup remotehat

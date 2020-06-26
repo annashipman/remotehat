@@ -15,18 +15,17 @@ Vagrant.configure("2") do |config|
 
     sudo a2ensite localhost.conf
     sudo systemctl reload apache2
-
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password password MySuperPassword'
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MySuperPassword'
+    sudo apt-get -y install default-libmysqlclient-dev
 
     sudo apt-get -y install python3-pip
 
-    sudo apt-get -y install mysql-server
-
     python3 -m pip install -r /vagrant/requirements.txt
 
-    mysql -uroot -pMySuperPassword -e "CREATE DATABASE hat CHARACTER SET utf8;"
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password password MySuperPassword'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MySuperPassword'
+    sudo apt-get -y install mysql-server
 
+    mysql -uroot -pMySuperPassword -e "CREATE DATABASE hat CHARACTER SET utf8;"
     mysql -uroot -pMySuperPassword -e "CREATE USER 'dev_user'@'localhost' IDENTIFIED BY 'password';"
     mysql -uroot -pMySuperPassword -e "GRANT ALL PRIVILEGES ON * . * TO 'dev_user'@'localhost';"
 
