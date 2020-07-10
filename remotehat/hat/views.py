@@ -6,8 +6,8 @@ from .models import FamousNames
 def index(request):
     return render(request, 'hat/index.html')
 
-def add_names(request):
-    return render(request, "hat/add_names.html")
+def add_name(request):
+    return render(request, "hat/add_name.html")
 
 def play(request):
     return render(request, "hat/play.html")
@@ -21,7 +21,7 @@ def submit_name(request):
     except:
         # Not sure what error might be raised here
         # Worth noting that it allows empty strings to be submitted
-        return render(request, 'hat/add_names.html', {
+        return render(request, 'hat/add_name.html', {
             'error_message': "An error occurred",
         })
     return render(request, 'hat/submit_name.html', {'famous_name': famous_name})
