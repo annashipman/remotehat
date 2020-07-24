@@ -26,3 +26,13 @@ class ViewTests(TestCase):
         response = c.post(reverse('hat:submit_name'), {'famous_name': ''})
         testNames = FamousNames.objects.count()
         self.assertEqual(testNames, 0)
+
+    def test_retrieve_random_name_increments_successful_guess(self):
+        rainer_maria_rilke = FamousNames(name_text = "Rainer Maria Rilke")
+        rainer_maria_rilke.save()
+        famousNameRound = FamousNames.objects.get().round_number
+        self.assertEqual(famousNameRound, 1)
+        c = Client()
+        response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Rainer Maria Rilke'})
+        famousNameRound = FamousNames.objects.get().round_number
+        self.assertEqual(famousNameRound, 2)
