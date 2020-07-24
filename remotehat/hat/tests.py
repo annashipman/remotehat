@@ -20,3 +20,9 @@ class ViewTests(TestCase):
         self.assertEqual(testNames, 1)
         testFamousName = FamousNames.objects.get().name_text
         self.assertEqual(testFamousName, "Maya Angelou")
+
+    def test_submit_blank_name_doesnt_save(self):
+        c = Client()
+        response = c.post(reverse('hat:submit_name'), {'famous_name': ''})
+        testNames = FamousNames.objects.count()
+        self.assertEqual(testNames, 0)

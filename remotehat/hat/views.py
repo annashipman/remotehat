@@ -20,7 +20,6 @@ def submit_name(request):
             f.save()
     except:
         # Not sure what error might be raised here
-        # Worth noting that it allows empty strings to be submitted
         return render(request, 'hat/add_name.html', {
             'error_message': "An error occurred",
         })
