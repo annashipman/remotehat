@@ -34,7 +34,7 @@ def retrieve_random_name(request):
         successful_guess.save()
 
     if not FamousNames.objects.filter(round_number=round):
-        famous_name = "No names left in hat! End of round!"
+        famous_name = "No names left in hat! End of round {}".format(round)
         ## Note that the 'got it, next' button still appears and will make this all fall over
     else:
         names_in_round = list(FamousNames.objects.filter(round_number=round))

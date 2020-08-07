@@ -36,3 +36,13 @@ class ViewTests(TestCase):
         response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Rainer Maria Rilke'})
         famousNameRound = FamousNames.objects.get().round_number
         self.assertEqual(famousNameRound, 2)
+
+    def test_retrieve_random_name_no_names_left(self):
+        round = 1
+        self.assertFalse(FamousNames.objects.filter(round_number=round))
+        mary_seacole = FamousNames(name_text = "Mary Seacole")
+        mary_seacole.save()
+        c = Client()
+        response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Mary Seacole'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue("No names left in hat! End of round 1" in response.content.decode("utf-8"))
