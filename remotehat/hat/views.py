@@ -6,8 +6,8 @@ from .models import FamousNames
 def index(request):
     return render(request, 'hat/index.html')
 
-def add_names(request):
-    return render(request, "hat/add_names.html")
+def add_name(request):
+    return render(request, "hat/add_name.html")
 
 def play(request):
     return render(request, "hat/play.html")
@@ -20,8 +20,7 @@ def submit_name(request):
             f.save()
     except:
         # Not sure what error might be raised here
-        # Worth noting that it allows empty strings to be submitted
-        return render(request, 'hat/add_names.html', {
+        return render(request, 'hat/add_name.html', {
             'error_message': "An error occurred",
         })
     return render(request, 'hat/submit_name.html', {'famous_name': famous_name})
@@ -35,7 +34,7 @@ def retrieve_random_name(request):
         successful_guess.save()
 
     if not FamousNames.objects.filter(round_number=round):
-        famous_name = "No names left in hat! End of round!"
+        famous_name = "No names left in hat! End of round {}".format(round)
         ## Note that the 'got it, next' button still appears and will make this all fall over
     else:
         names_in_round = list(FamousNames.objects.filter(round_number=round))
