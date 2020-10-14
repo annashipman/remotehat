@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-18.04"
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
@@ -35,8 +35,4 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
-  config.vm.provider "virtualbox" do |vb|
-    # disable generating ubuntu-bionic-18.04-cloudimg-console.log file in the shared folder
-    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
-  end
 end
