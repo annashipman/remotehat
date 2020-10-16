@@ -21,6 +21,13 @@ class ViewTests(TestCase):
         testFamousName = FamousNames.objects.get().name_text
         self.assertEqual(testFamousName, "Maya Angelou")
 
+    def test_submit_unicode_name(self):
+        c = Client()
+        response = c.post(reverse('hat:submit_name'), {'famous_name': 'Karol Józef Wojtyła'})
+        self.assertEqual(response.status_code, 200)
+        testFamousName = FamousNames.objects.get().name_text
+        self.assertEqual(testFamousName, "Karol Józef Wojtyła")
+
     def test_submit_blank_name_doesnt_save(self):
         c = Client()
         response = c.post(reverse('hat:submit_name'), {'famous_name': ''})
