@@ -59,6 +59,9 @@ class ViewTests(TestCase):
         response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Rainer Maria Rilke'})
         self.assertTrue("No names left in hat! End of round 1" in response.content.decode("utf-8"))
         self.assertEqual(FamousNames.objects.filter(round_number=1).count(), 0)
-        # below test fails - falls over
-        # response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Mary Seacole'})
-        # Add test here as well as demonstrating it doesn't fall over
+        self.assertEqual(FamousNames.objects.filter(round_number=2).count(), 2)
+
+        ## Now testing it can retrieve from round 2 without manual intervention
+        response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Mary Seacole'})
+        response = c.post(reverse('hat:retrieve_random_name'), {'famous_name': 'Rainer Maria Rilke'})
+        self.assertEqual(FamousNames.objects.filter(round_number=2).count(), 0)
