@@ -26,17 +26,17 @@ def submit_name(request):
     return render(request, 'hat/submit_name.html', {'famous_name': famous_name})
 
 def retrieve_random_name(request):
-    round = 1
+    current_round = 1
     guessed_name = request.POST.get("famous_name")
     if guessed_name:
-        successful_guess = FamousNames.objects.filter(round_number=round, name_text = guessed_name)[0]
+        successful_guess = FamousNames.objects.filter(round_number=current_round, name_text = guessed_name)[0]
         successful_guess.round_number += 1
         successful_guess.save()
 
-    if not FamousNames.objects.filter(round_number=round):
-        famous_name = "No names left in hat! End of round {}".format(round)
+    if not FamousNames.objects.filter(round_number=current_round):
+        famous_name = "No names left in hat! End of round {}".format(current_round)
         ## Note that the 'got it, next' button still appears and will make this all fall over
     else:
-        names_in_round = list(FamousNames.objects.filter(round_number=round))
+        names_in_round = list(FamousNames.objects.filter(round_number=current_round))
         famous_name = random.choice(names_in_round).name_text
     return render(request, 'hat/retrieve_name.html', {'famous_name': famous_name})
