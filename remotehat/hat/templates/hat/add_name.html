@@ -1,14 +1,14 @@
 <html>
 {% include "hat/header.html" %}
-<body>
-<h1>Add Name</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <body>
+    <h1>Add Name</h1>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'hat:submit_name' %}" method="post">
-{% csrf_token %}
-<input type="text" name="famous_name" id="famous_name">
-<label for="famous_name">Enter famous name</label><br>
-<input type="submit" value="Enter">
-</form>
-</body>
+    <form action="{% url 'hat:submit_name' %}" method="post">
+    {% csrf_token %}
+      <input type="text" name="famous_name" id="famous_name">
+      <label for="famous_name">Enter famous name</label><br>
+      <input type="submit" value="Enter">
+    </form>
+  </body>
 </html>
