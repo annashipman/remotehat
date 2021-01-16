@@ -1,9 +1,14 @@
-<h1>{{ famous_name }}</h1>
+<html>
+{% include "hat/header.html" %}
+  <body>
+    <h1>{{ famous_name }}</h1>
 
-<form action="{% url 'hat:retrieve_random_name' %}" method="post">
-{% csrf_token %}
-<input type="hidden" id="famous_name" name="famous_name" value="{{ famous_name }}">
-<input type="submit" value="Got it! Next!">
-</form>
+    <form action="{% url 'hat:retrieve_random_name' %}" method="post">
+    {% csrf_token %}
+      <input type="hidden" id="famous_name" name="famous_name" value="{{ famous_name }}">
+      <input type="submit" value="Got it! Next!">
+    </form>
 
-<a href="{% url 'hat:play' %}">End turn</a>
+    <a href="{% url 'hat:play' %}">End turn</a>
+  </body>
+</html>

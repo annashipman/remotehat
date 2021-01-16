@@ -1,7 +1,13 @@
-<h1>You've submitted: {{ famous_name }}</h1>
+<html>
+{% include "hat/header.html" %}
+  <body>
+    <h1>You've submitted: {{ famous_name }}</h1>
 
-<form action="{% url 'hat:add_name' %}" method="post">
-{% csrf_token %}
-<input type="submit" value="Add another">
-</form>
-<a href="{% url 'hat:play' %}">Finished, I want to play now</a>
+    <form action="{% url 'hat:add_name' %}" method="post">
+    {% csrf_token %}
+      <input type="submit" value="Add another">
+    </form>
+
+    <a href="{% url 'hat:play' %}">Finished, I want to play now</a>
+  </body>
+</html>

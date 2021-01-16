@@ -1,6 +1,11 @@
-<h1>Hat!</h1>
+<html>
+{% include "hat/header.html" %}
+  <body>
+    <h1>Hat!</h1>
 
-<ul>
-  <li><a href="{% url 'hat:add_name' %}">Add names</a></li>
-  <li><a href="{% url 'hat:play' %}">Play</a></li>
-</ul>
+    <ul>
+      <li><a href="{% url 'hat:add_name' %}">Add names</a></li>
+      <li><a href="{% url 'hat:play' %}">Play</a></li>
+    </ul>
+  </body>
+</html>
