@@ -1,3 +1,6 @@
+<html>
+{% include "hat/header.html" %}
+<body>
 <h1>{{ famous_name }}</h1>
 
 <form action="{% url 'hat:retrieve_random_name' %}" method="post">
@@ -7,3 +10,5 @@
 </form>
 
 <a href="{% url 'hat:play' %}">End turn</a>
+</body>
+</html>
