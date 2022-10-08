@@ -10,7 +10,7 @@ This project uses Vagrant. To test the application locally, `vagrant up` and it 
 
 At the moment, set up of the remote server is manual, and deployment only deploys the code under `/remote/hat` to the same place on the server. That means the database and the apache server all need to be set up prior to first deploy.
 
-## Next steps
+## Next steps
 
 The next step here is to choose direction:
 
